@@ -9,7 +9,6 @@
     <meta name="author" content="MTS Ar-Rahmah">
     <meta name="google-site-verification" content="2Y8B-Gw7zrBJctL4IJRsqJIFCND7YI0AFsHBmkorrWg">
     
-    
     <!-- Open Graph Meta Tags untuk media sosial -->
     <meta property="og:title" content="MTS Ar-Rahmah - Madrasah Tsanawiyah Islam Terpadu">
     <meta property="og:description" content="Membentuk generasi Qur'ani, berakhlak mulia, dan berprestasi akademik tinggi.">
@@ -477,6 +476,11 @@
             color: #666;
         }
 
+        /* SLIDER PROFIL SEKOLAH YANG DIPERBAIKI */
+        .profil-slider {
+            position: relative;
+        }
+
         .slider-container {
             position: relative;
             border-radius: var(--radius);
@@ -486,19 +490,20 @@
 
         .slider {
             display: flex;
-            transition: transform 0.5s ease;
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform;
         }
 
         .slide {
             min-width: 100%;
             position: relative;
-            cursor: pointer;
         }
 
         .slide img {
             width: 100%;
             height: 400px;
             object-fit: cover;
+            display: block;
         }
 
         .slide-overlay {
@@ -510,35 +515,72 @@
             color: white;
             padding: 15px;
             text-align: center;
-            opacity: 0;
-            transition: var(--transition);
         }
 
-        .slide:hover .slide-overlay {
-            opacity: 1;
+        /* Tombol navigasi slider profil sekolah */
+        .slider-controls {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 10;
+        }
+
+        .slider-arrow {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .slider-arrow:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
         }
 
         .slider-dots {
             display: flex;
             justify-content: center;
-            gap: 10px;
-            margin-top: 15px;
+            gap: 12px;
+            margin-top: 20px;
         }
 
-        .dot {
+        .slider-dot {
             width: 12px;
             height: 12px;
             border-radius: 50%;
             background: #ddd;
             cursor: pointer;
-            transition: var(--transition);
+            transition: all 0.3s ease;
+            border: none;
+            outline: none;
         }
 
-        .dot.active {
+        .slider-dot.active {
             background: var(--primary);
+            transform: scale(1.2);
         }
 
-        /* Ekstrakurikuler - Diperbarui dengan animasi scroll horizontal yang benar */
+        .slider-dot:hover {
+            background: var(--primary);
+            transform: scale(1.1);
+        }
+
+        /* Ekstrakurikuler */
         .ekstrakurikuler-section {
             position: relative;
             overflow: hidden;
@@ -772,7 +814,7 @@
             margin-bottom: 10px;
         }
 
-       /* Testimonials Carousel Styles */
+        /* Testimonials Carousel Styles */
         .testimonials-carousel-container {
             position: relative;
             max-width: 1200px;
@@ -1413,6 +1455,7 @@
             }
         }
 
+        /* PERBAIKAN MOBILE MENU - Menu muncul di kiri sesuai ikon sidebar */
         @media (max-width: 768px) {
             .mobile-menu-btn {
                 display: block;
@@ -1421,24 +1464,73 @@
             nav ul {
                 position: fixed;
                 top: 80px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 80px);
-                background: white;
+                left: 20px; /* Posisi dari kiri */
+                width: 280px; /* Lebar menu lebih kecil */
+                height: auto; /* Tidak full height */
+                background: rgba(255, 255, 255, 0.95); /* Background transparan */
                 flex-direction: column;
-                align-items: center;
+                align-items: flex-start;
                 justify-content: flex-start;
-                padding-top: 40px;
+                padding: 20px;
                 transition: var(--transition);
                 box-shadow: var(--shadow);
+                border-radius: var(--radius);
+                backdrop-filter: blur(10px); /* Efek blur untuk transparansi */
+                -webkit-backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                transform: translateX(-100%); /* Mulai dari luar layar kiri */
+                opacity: 0;
+                visibility: hidden;
+                z-index: 1001;
             }
             
             nav ul.active {
-                left: 0;
+                transform: translateX(0);
+                opacity: 1;
+                visibility: visible;
             }
             
             nav ul li {
-                margin: 15px 0;
+                margin: 12px 0;
+                width: 100%;
+            }
+            
+            nav ul li a {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 10px 15px;
+                border-radius: 8px;
+                transition: var(--transition);
+                width: 100%;
+                color: var(--dark);
+                font-weight: 500;
+            }
+            
+            nav ul li a:hover {
+                background: rgba(13, 138, 109, 0.1);
+                padding-left: 20px;
+                color: var(--primary);
+            }
+            
+            nav ul li a::after {
+                display: none; /* Hilangkan garis bawah pada mobile */
+            }
+            
+            /* Tambahkan ikon untuk setiap menu item */
+            nav ul li:nth-child(1) a::before { content: "\f015"; font-family: "Font Awesome 6 Free"; font-weight: 900; }
+            nav ul li:nth-child(2) a::before { content: "\f19d"; font-family: "Font Awesome 6 Free"; font-weight: 900; }
+            nav ul li:nth-child(3) a::before { content: "\f5fc"; font-family: "Font Awesome 6 Free"; font-weight: 900; }
+            nav ul li:nth-child(4) a::before { content: "\f0c0"; font-family: "Font Awesome 6 Free"; font-weight: 900; }
+            nav ul li:nth-child(5) a::before { content: "\f64f"; font-family: "Font Awesome 6 Free"; font-weight: 900; }
+            nav ul li:nth-child(6) a::before { content: "\f3c5"; font-family: "Font Awesome 6 Free"; font-weight: 900; }
+            nav ul li:nth-child(7) a::before { content: "\f095"; font-family: "Font Awesome 6 Free"; font-weight: 900; }
+            
+            nav ul li a::before {
+                width: 20px;
+                text-align: center;
+                color: var(--primary);
+                font-size: 16px;
             }
             
             .profil-sekolah {
@@ -1521,6 +1613,14 @@
                 right: 20px;
             }
             
+            /* Mobile menu lebih kecil di layar sangat kecil */
+            @media (max-width: 380px) {
+                nav ul {
+                    width: 260px;
+                    left: 10px;
+                }
+            }
+            
             /* Responsive untuk ekstrakurikuler scroll */
             .ekstra-card {
                 flex: 0 0 250px;
@@ -1538,6 +1638,7 @@
         }
     </style>
 </head>
+           
 <body>
     <!-- Header & Navigation -->
     <header id="header">
@@ -1574,7 +1675,7 @@
                 frameborder="0" 
                 allow="autoplay; encrypted-media" 
                 allowfullscreen>
-</iframe>
+            </iframe>
         </div>
         <div class="hero-overlay"></div>
         <div class="container hero-content">
@@ -1722,7 +1823,7 @@
             <div class="profil-slider">
                 <div class="slider-container">
                     <div class="slider" id="image-slider">
-                        <div class="slide" data-image="gambar-arrahmah2.jpg" data-caption="Tentang  Mts Arrahmah- Tempat belajar yang nyaman dan islami">
+                        <div class="slide" data-image="gambar-arrahmah2.jpg" data-caption="Tentang MTS Arrahmah - Tempat belajar yang nyaman dan islami">
                             <img src="gambar-arrahmah2.jpg" alt="MTS Arrahmah">
                             <div class="slide-overlay">Tentang MTS Ar-Rahmah</div>
                         </div>
@@ -1735,10 +1836,19 @@
                             <div class="slide-overlay">Kegiatan Ujian Praktik Siswa Kelas IX Mts Ar-Rahmah</div>
                         </div>
                     </div>
-                    <div class="slider-dots">
-                        <span class="dot active" data-slide="0"></span>
-                        <span class="dot" data-slide="1"></span>
-                        <span class="dot" data-slide="2"></span>
+                    
+                    <!-- Tombol navigasi slider profil sekolah -->
+                    <div class="slider-controls">
+                        <button class="slider-arrow prev" id="slider-prev">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="slider-arrow next" id="slider-next">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="slider-dots" id="slider-dots">
+                        <!-- Dots akan di-generate oleh JavaScript -->
                     </div>
                 </div>
             </div>
@@ -2063,7 +2173,7 @@
             <div class="testimonial-slide">
                 <div class="testimonial-card">
                     <div class="testimonial-text">
-                        “Sebagai alumni, aku bersyukur pernah belajar di MTS Ar Rahmah, banyak hal yang ngebentuk aku sampai sekarang.”
+                        "Sebagai alumni, aku bersyukur pernah belajar di MTS Ar Rahmah, banyak hal yang ngebentuk aku sampai sekarang."
                     </div>
                     <div class="testimonial-author">
                         <img src="testimoni-alumni1.jpeg" alt="Lika Zendita" class="author-image">
@@ -2079,7 +2189,7 @@
             <div class="testimonial-slide">
                 <div class="testimonial-card">
                     <div class="testimonial-text">
-                        “Guru-gurunya benar-benar berjasa, cara mereka ngajarin bikin aku terus keingat sampai setelah lulus.”
+                        "Guru-gurunya benar-benar berjasa, cara mereka ngajarin bikin aku terus keingat sampai setelah lulus."
                     </div>
                     <div class="testimonial-author">
                         <img src="image-abid.jpg" alt="Muhamad Abid" class="author-image">
@@ -2095,7 +2205,7 @@
             <div class="testimonial-slide">
                 <div class="testimonial-card">
                     <div class="testimonial-text">
-                        “Teman-teman di sini kasih banyak kenangan yang masih aku bawa sampai hari ini.”
+                        "Teman-teman di sini kasih banyak kenangan yang masih aku bawa sampai hari ini."
                     </div>
                     <div class="testimonial-author">
                         <img src="gambar-aby.jpg" alt="Muhamad Aby" class="author-image">
@@ -2111,7 +2221,7 @@
             <div class="testimonial-slide">
                 <div class="testimonial-card">
                     <div class="testimonial-text">
-                        “Maaf kalau dulu ada sikap atau kata-kata yang kurang baik, aku benar-benar berterima kasih atas semua bimbingannya.”
+                        "Maaf kalau dulu ada sikap atau kata-kata yang kurang baik, aku benar-benar berterima kasih atas semua bimbingannya."
                     </div>
                     <div class="testimonial-author">
                         <img src="gambar-siswa-1.jpg" alt="Siti Nurhaliza" class="author-image">
@@ -2127,7 +2237,7 @@
             <div class="testimonial-slide">
                 <div class="testimonial-card">
                     <div class="testimonial-text">
-                        “Semoga MTs Ar Rahmah terus maju dan melahirkan generasi yang lebih baik lagi—aku bangga pernah jadi bagian dari sekolah ini.”
+                        "Semoga MTs Ar Rahmah terus maju dan melahirkan generasi yang lebih baik lagi—aku bangga pernah jadi bagian dari sekolah ini."
                     </div>
                     <div class="testimonial-author">
                         <img src="gambar-siswa-2.jpg" alt="Ahmad Rizki" class="author-image">
@@ -2375,55 +2485,82 @@
             });
         });
 
-        // Image Slider
+        // SLIDER PROFIL SEKOLAH YANG DIPERBAIKI
         const slider = document.getElementById('image-slider');
-        const dots = document.querySelectorAll('.dot');
+        const sliderPrev = document.getElementById('slider-prev');
+        const sliderNext = document.getElementById('slider-next');
+        const sliderDots = document.getElementById('slider-dots');
+
         let currentSlide = 0;
+        let sliderInterval;
         const slideCount = 3;
-        let slideInterval;
-        
-        function showSlide(index) {
-            if (index >= slideCount) index = 0;
-            if (index < 0) index = slideCount - 1;
+
+        // Initialize slider profil sekolah
+        function initProfilSlider() {
+            if (!slider) return;
             
-            if (slider) {
-                slider.style.transform = `translateX(-${index * 100}%)`;
+            // Create dots
+            for (let i = 0; i < slideCount; i++) {
+                const dot = document.createElement('button');
+                dot.className = `slider-dot ${i === 0 ? 'active' : ''}`;
+                dot.setAttribute('data-index', i);
+                dot.addEventListener('click', () => goToSlide(i));
+                sliderDots.appendChild(dot);
             }
             
-            // Update dots
-            dots.forEach(dot => dot.classList.remove('active'));
-            if (dots[index]) {
-                dots[index].classList.add('active');
-            }
+            // Auto slide every 3 seconds
+            sliderInterval = setInterval(() => {
+                goToSlide((currentSlide + 1) % slideCount);
+            }, 3000);
             
-            currentSlide = index;
-        }
-        
-        // Initialize slider
-        function initSlider() {
-            if (slider && dots.length > 0) {
-                // Auto slide every 3 seconds
-                slideInterval = setInterval(() => {
-                    showSlide(currentSlide + 1);
-                }, 3000);
-                
-                // Dot navigation
-                dots.forEach(dot => {
-                    dot.addEventListener('click', function() {
-                        const slideIndex = parseInt(this.getAttribute('data-slide'));
-                        showSlide(slideIndex);
-                        // Reset interval when manually changing slides
-                        clearInterval(slideInterval);
-                        slideInterval = setInterval(() => {
-                            showSlide(currentSlide + 1);
-                        }, 3000);
-                    });
+            // Previous button
+            if (sliderPrev) {
+                sliderPrev.addEventListener('click', () => {
+                    goToSlide((currentSlide - 1 + slideCount) % slideCount);
+                    resetSliderInterval();
                 });
             }
+            
+            // Next button
+            if (sliderNext) {
+                sliderNext.addEventListener('click', () => {
+                    goToSlide((currentSlide + 1) % slideCount);
+                    resetSliderInterval();
+                });
+            }
+            
+            // Pause on hover
+            slider.addEventListener('mouseenter', () => {
+                clearInterval(sliderInterval);
+            });
+            
+            slider.addEventListener('mouseleave', () => {
+                resetSliderInterval();
+            });
         }
-        
-        // Initialize slider when DOM is loaded
-        document.addEventListener('DOMContentLoaded', initSlider);
+
+        function goToSlide(index) {
+            if (!slider) return;
+            
+            currentSlide = index;
+            slider.style.transform = `translateX(-${index * 100}%)`;
+            
+            // Update dots
+            const dots = sliderDots.querySelectorAll('.slider-dot');
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        }
+
+        function resetSliderInterval() {
+            clearInterval(sliderInterval);
+            sliderInterval = setInterval(() => {
+                goToSlide((currentSlide + 1) % slideCount);
+            }, 3000);
+        }
+
+        // Initialize slider profil sekolah
+        document.addEventListener('DOMContentLoaded', initProfilSlider);
 
         // Counter Animation
         const counters = document.querySelectorAll('.stat-number');
@@ -2705,8 +2842,8 @@
 
         // Clean up intervals when page is unloaded
         window.addEventListener('beforeunload', function() {
-            if (slideInterval) {
-                clearInterval(slideInterval);
+            if (sliderInterval) {
+                clearInterval(sliderInterval);
             }
             if (testimonialInterval) {
                 clearInterval(testimonialInterval);
