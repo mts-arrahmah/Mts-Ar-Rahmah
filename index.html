@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MTS Arrohmah - Madrasah Tsanawiyah Islam Terpadu</title>
+    <title>MTS Ar-Rahmah - Madrasah Tsanawiyah Islam Terpadu</title>
+    <meta name="description" content="MTS Ar-Rahmah - Madrasah Tsanawiyah Islam Terpadu di Bekasi. Membentuk generasi Qur'ani, berakhlak mulia, dan berprestasi akademik tinggi.">
+    <meta name="keywords" content="MTS Ar-Rahmah,sekolah islam bekasi, madrasah tsanawiyah, sekolah terpadu, pendidikan islam, sekolah bekasi">
+    <meta name="author" content="MTS Ar-Rahmah">
+    <meta name="google-site-verification" content="2Y8B-Gw7zrBJctL4IJRsqJIFCND7YI0AFsHBmkorrWg">
     
-    <!-- Meta Description & Keywords -->
-    <meta name="description" content="MTS Arrohmah - Madrasah Tsanawiyah Islam Arrohmah. Membentuk generasi Qur'ani, berakhlak mulia, dan berprestasi akademik tinggi.">
-    <meta name="keywords" content="MTS Arrohmah, sekolah islam bekasi, madrasah tsanawiyah, mts arrohmah, Mts arrahmah, sekolah di bekasi, Mts arrahmah cibitung, mts arrohmah bekasi">
-    <meta name="author" content="MTS Arrohmah">
-    <meta name="google-site-verification" content="06ErE-q5yxWgSE9nK23eTgK4Quouy-y8UFLj7F7VCHE">
+    <!-- Open Graph Meta Tags untuk media sosial -->
+    <meta property="og:title" content="MTS Ar-Rahmah - Madrasah Tsanawiyah Islam Terpadu">
+    <meta property="og:description" content="Membentuk generasi Qur'ani, berakhlak mulia, dan berprestasi akademik tinggi.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mts-arrahmah.github.io/Mts-Ar-Rahmah/">
+    <meta property="og:image" content="gambar-logo (1).png">
     
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="gambar-logo (1).png">
-    
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body>
     <style>
         :root {
             --primary: #0d8a6d;
@@ -165,63 +165,122 @@
             color: var(--dark);
         }
 
-        /* Hero Section */
+        /* HERO SECTION - FULLSCREEN VIDEO BACKGROUND */
         .hero {
-            height: 98vh;
             position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
             margin-top: 0;
         }
 
-        .hero-video-container {
+        .video-background {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            z-index: -1;
             overflow: hidden;
-            z-index: -1;
         }
 
-        .hero-video {
-            width: 100%;
-            height: 112%;
-            object-fit: cover;
+        .video-background iframe {
             position: absolute;
-            top: 0;
-            left: 0;
+            top: 50%;
+            left: 50%;
+            width: 100vw;
+            height: 56.25vw; /* 16:9 aspect ratio based on width */
+            min-width: 177.78vh; /* 16:9 aspect ratio based on height */
+            min-height: 100vh;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
         }
 
-        .hero-overlay {
+        /* Responsive video sizing */
+        @media (max-aspect-ratio: 16/9) {
+            .video-background iframe {
+                height: 100vh;
+                width: 177.78vh; /* 16:9 for portrait */
+            }
+        }
+
+        @media (min-aspect-ratio: 16/9) {
+            .video-background iframe {
+                width: 100vw;
+                height: 56.25vw; /* 16:9 for landscape */
+            }
+        }
+
+        .video-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.3);
-            z-index: -1;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
         }
 
         .hero-content {
+            position: relative;
             text-align: center;
-            color: rgb(255, 255, 255);
+            color: white;
             max-width: 800px;
             padding: 0 20px;
+            z-index: 2;
         }
 
         .hero-content h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+            animation: fadeInUp 1s ease-out;
         }
 
         .hero-content p {
-            font-size: 20px;
-            margin-bottom: 30px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .cta-button {
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive hero content */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
         }
 
         /* Section Styling */
@@ -1541,14 +1600,6 @@
                 grid-template-columns: repeat(2, 1fr);
             }
             
-            .hero-content h1 {
-                font-size: 36px;
-            }
-            
-            .hero-content p {
-                font-size: 18px;
-            }
-
             .video-lightbox-content {
                 width: 95%;
             }
@@ -1579,7 +1630,11 @@
 
         @media (max-width: 480px) {
             .hero-content h1 {
-                font-size: 28px;
+                font-size: 2rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
             }
             
             .kegiatan-grid, .amaliyah-grid, 
@@ -1618,6 +1673,14 @@
                 nav ul {
                     width: 260px;
                     left: 10px;
+                }
+                
+                .hero-content h1 {
+                    font-size: 1.8rem;
+                }
+                
+                .hero-content p {
+                    font-size: 0.9rem;
                 }
             }
             
@@ -1665,20 +1728,20 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-     <section class="hero" id="beranda">
-        <div class="hero-video-container">
-            <!-- Video YouTube dengan parameter yang diperbaiki -->
+    <!-- Hero Section dengan FULLSCREEN VIDEO BACKGROUND -->
+    <section class="hero" id="beranda">
+        <div class="video-background">
+            <!-- VIDEO YOUTUBE FULLSCREEN -->
             <iframe 
-                class="hero-video" 
-                src="https://www.youtube.com/embed/78qkLmJqIxo?autoplay=1&mute=1&playsinline=1&loop=1&playlist=78qkLmJqIxo&controls=0&modestbranding=1&rel=0&showinfo=0" 
+                src="https://www.youtube.com/embed/riMZ-h_XL6I?autoplay=1&mute=1&loop=1&playlist=riMZ-h_XL6I&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1&fs=0&mute=1" 
                 frameborder="0" 
-                allow="autoplay; encrypted-media" 
-                allowfullscreen>
+                allow="autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen
+                title="MTS Ar-Rahmah Video Background">
             </iframe>
         </div>
-        <div class="hero-overlay"></div>
-        <div class="container hero-content">
+        <div class="video-overlay"></div>
+        <div class="hero-content">
             <h1>MTS AR-RAHMAH</h1>
             <p>Madrasah tsanawiyah Terpadu yang membentuk generasi Qur'ani, berakhlak mulia, dan berprestasi akademik tinggi. Kami berkomitmen mencetak pemimpin masa depan yang berkarakter Islami.</p>
             <a href="#" class="cta-button" id="daftar-button">Daftar Sekarang</a>
@@ -2007,7 +2070,7 @@
                 </div>
             </div>
             <div class="kegiatan-card" data-image="gambar-pesantren-ramadhan.jpg" data-caption="Pesantren Ramadhan - Program intensif untuk meningkatkan ibadah dan pemahaman agama">
-                <img src="gambar-pesantren-ramadhan.jpg" alt="Pesantren Ramadhan" class="kegiatan-image">
+                <img src="pesantren ramadhan.jpeg" alt="Pesantren Ramadhan" class="kegiatan-image">
                 <div class="kegiatan-content">
                     <h3>Pesantren Ramadhan</h3>
                     <p>Program bulan Ramadhan untuk meningkatkan karakter muslim dalam ibadah dan pemahaman agama islam.</p>
@@ -2136,29 +2199,29 @@
                 </div>
             </div>
             <div class="video-card">
-                <div class="video-container" data-video="iDErVpsJL5I" data-start="0" data-end="30">
-                    <img src="https://img.youtube.com/vi/iDErVpsJL5I/maxresdefault.jpg" alt="Testimoni Orang Tua" class="video-thumbnail">
+                <div class="video-container" data-video="TeDcufMGhuU" data-start="0" data-end="30">
+                    <img src="https://img.youtube.com/vi/TeDcufMGhuU/maxresdefault.jpg" alt="Testimoni Orang Tua" class="video-thumbnail">
                     <div class="video-play-btn">
                         <i class="fas fa-play"></i>
                     </div>
                 </div>
                 <div class="video-content">
-                    <h3>Ibu Dewi Lestari</h3>
+                    <h3>Mama shakira</h3>
                     <div class="video-role">Orang Tua Siswa</div>
                     <p>"Anak saya berkembang sangat positif di MTS Ar-Rahmah, baik dari segi akademik maupun akhlaknya."</p>
                 </div>
             </div>
             <div class="video-card">
-                <div class="video-container" data-video="iDErVpsJL5I" data-start="0" data-end="30">
-                    <img src="https://img.youtube.com/vi/iDErVpsJL5I/maxresdefault.jpg" alt="Testimoni Siswa" class="video-thumbnail">
-                    <div class="video-play-btn">
-                        <i class="fas fa-play"></i>
-                    </div>
+    <div class="video-container" data-video="AZKk18eSvAc" data-start="0" data-end="30">
+        <img src="https://img.youtube.com/vi/AZKk18eSvAc/maxresdefault.jpg" alt="Testimoni Siswa" class="video-thumbnail">
+        <div class="video-play-btn">
+            <i class="fas fa-play"></i>
+        </div>
                 </div>
                 <div class="video-content">
-                    <h3>Sarah Nurhaliza</h3>
-                    <div class="video-role">Siswa Kelas 8</div>
-                    <p>"Saya sangat senang belajar di MTS Ar-Rahmah karena guru-gurunya ramah dan metode pembelajarannya menyenangkan."</p>
+                    <h3>Bunda violin</h3>
+                    <div class="video-role">Orang tua siswa</div>
+                    <p>"menurut saya di mts ar rahmah sangat mengutamakan agamanya, adab, serta tauhid nya."</p>
                 </div>
             </div>
         </div>
@@ -2192,9 +2255,9 @@
                         "Guru-gurunya benar-benar berjasa, cara mereka ngajarin bikin aku terus keingat sampai setelah lulus."
                     </div>
                     <div class="testimonial-author">
-                        <img src="image-abid.jpg" alt="Muhamad Abid" class="author-image">
+                        <img src="gambar testimoni .jpeg" alt="Muhamad Abid" class="author-image">
                         <div class="author-info">
-                            <h4>Muhamad Abid</h4>
+                            <h4>Nailah Ghaitsa Azzahra </h4>
                             <p>Alumni 2022</p>
                         </div>
                     </div>
@@ -2208,9 +2271,9 @@
                         "Teman-teman di sini kasih banyak kenangan yang masih aku bawa sampai hari ini."
                     </div>
                     <div class="testimonial-author">
-                        <img src="gambar-aby.jpg" alt="Muhamad Aby" class="author-image">
+                        <img src="gambar testimoni 2.jpeg" alt="Muhamad Aby" class="author-image">
                         <div class="author-info">
-                            <h4>Muhamad Aby</h4>
+                            <h4>Niquita Vinazella Anindiya Jasmine</h4>
                             <p>Alumni 2022</p>
                         </div>
                     </div>
@@ -2224,9 +2287,9 @@
                         "Maaf kalau dulu ada sikap atau kata-kata yang kurang baik, aku benar-benar berterima kasih atas semua bimbingannya."
                     </div>
                     <div class="testimonial-author">
-                        <img src="gambar-siswa-1.jpg" alt="Siti Nurhaliza" class="author-image">
+                        <img src="gambar testimoni 3.jpeg" alt="Siti Nurhaliza" class="author-image">
                         <div class="author-info">
-                            <h4>Siti Nurhaliza</h4>
+                            <h4>Ahmad Nafiz Fadhillah</h4>
                             <p>Alumni 2023</p>
                         </div>
                     </div>
@@ -2240,9 +2303,9 @@
                         "Semoga MTs Ar Rahmah terus maju dan melahirkan generasi yang lebih baik lagi—aku bangga pernah jadi bagian dari sekolah ini."
                     </div>
                     <div class="testimonial-author">
-                        <img src="gambar-siswa-2.jpg" alt="Ahmad Rizki" class="author-image">
+                        <img src="alumni.jpeg" alt="Ahmad Rizki" class="author-image">
                         <div class="author-info">
-                            <h4>Ahmad Rizki</h4>
+                            <h4>Elvaretta putri dirahmaharani</h4>
                             <p>Alumni 2021</p>
                         </div>
                     </div>
@@ -2849,6 +2912,99 @@
                 clearInterval(testimonialInterval);
             }
         });
+        
+        // Video Background Optimization
+        function optimizeVideoBackground() {
+            const videoIframe = document.querySelector('.video-background iframe');
+            const heroSection = document.querySelector('.hero');
+            
+            if (!videoIframe || !heroSection) return;
+            
+            // Ensure hero section maintains 100vh height
+            heroSection.style.height = '100vh';
+            
+            // Handle iOS autoplay restrictions
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+            const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+            
+            if ((isIOS || isSafari) && videoIframe) {
+                // Add user interaction requirement for iOS/Safari
+                const playVideo = () => {
+                    // iOS requires user interaction to play video with sound
+                    // Video is already muted, so should work
+                    console.log('Video background ready for iOS/Safari');
+                };
+                
+                // Add click listener to hero section for iOS
+                heroSection.addEventListener('click', playVideo, { once: true });
+                heroSection.addEventListener('touchstart', playVideo, { once: true });
+            }
+        }
+        
+        // Call optimization function when DOM is loaded
+        document.addEventListener('DOMContentLoaded', optimizeVideoBackground);
+        
+        // Handle window resize for video background
+        let resizeTimer;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function() {
+                const heroSection = document.querySelector('.hero');
+                if (heroSection) {
+                    heroSection.style.height = '100vh';
+                }
+            }, 250);
+        });
+        
+        // Prevent right-click on video to avoid YouTube controls
+        const videoBackground = document.querySelector('.video-background');
+        if (videoBackground) {
+            videoBackground.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+            });
+        }
+        
+        // Add loading state for video
+        const videoIframe = document.querySelector('.video-background iframe');
+        if (videoIframe) {
+            videoIframe.addEventListener('load', function() {
+                console.log('Video background loaded successfully');
+                // Remove any loading indicators if present
+                const loadingIndicator = document.querySelector('.video-loading');
+                if (loadingIndicator) {
+                    loadingIndicator.style.display = 'none';
+                }
+            });
+            
+            videoIframe.addEventListener('error', function() {
+                console.error('Failed to load video background');
+                // Optionally show a fallback image
+                const videoBackgroundContainer = document.querySelector('.video-background');
+                if (videoBackgroundContainer) {
+                    videoBackgroundContainer.innerHTML = `
+                        <div style="
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            background: linear-gradient(135deg, #0d8a6d 0%, #1a73e8 100%);
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            color: white;
+                            text-align: center;
+                            padding: 20px;
+                        ">
+                            <div>
+                                <h2>MTS AR-RAHMAH</h2>
+                                <p>Madrasah tsanawiyah Terpadu yang membentuk generasi Qur'ani</p>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+        }
     </script>
 </body>
 </html>
